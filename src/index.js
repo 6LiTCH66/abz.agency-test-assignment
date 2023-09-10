@@ -24,6 +24,11 @@ app.use("/api/v1", userRoutes)
 app.use("/api/v1", positionsRoute)
 app.use("/api/v1", tokenRoutes)
 
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
+
+
 async function testDatabaseConnection() {
     try {
         await sequelize.authenticate();
