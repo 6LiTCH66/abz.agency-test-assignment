@@ -5,13 +5,18 @@ import process from 'process';
 import configJson from '../config/config.json' assert {type: "json"};
 import UserModel from "./user.mjs"
 import PositionsModel from "./position.mjs"
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const env = process.env.NODE_ENV || 'development';
+
 const config = configJson[env];
 const basename = path.basename(import.meta.url); // Use import.meta.url to replace __filename
 const db = {};
 
 let sequelize;
+
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
