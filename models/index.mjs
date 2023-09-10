@@ -8,7 +8,6 @@ import PositionsModel from "./position.mjs"
 import dotenv from "dotenv";
 
 dotenv.config();
-
 const env = process.env.NODE_ENV || 'development';
 
 const config = configJson[env];
@@ -17,10 +16,12 @@ const db = {};
 
 let sequelize;
 
+
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
+
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+    sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
 const User = UserModel(sequelize)
@@ -52,4 +53,4 @@ Promise.all(modelFiles.map(file => import(path.join(new URL('.', import.meta.url
       db.Sequelize = Sequelize;
     });
 
-export {User, Positions, db};
+export {User, Positions, db, sequelize};

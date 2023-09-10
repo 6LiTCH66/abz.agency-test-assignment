@@ -1,9 +1,10 @@
 import express from "express"
 import http from "http";
-import sequelize from "./utils/db.js";
+// import sequelize from "./utils/db.js";
 import userRoutes from "./routes/user.routes.js";
 import positionsRoute from "./routes/positions.routes.js";
 import tokenRoutes from "./routes/token.routes.js";
+import {sequelize} from "../models/index.mjs";
 
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv"
