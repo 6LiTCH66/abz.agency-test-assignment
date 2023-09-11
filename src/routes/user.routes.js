@@ -13,7 +13,7 @@ const upload = multer({
     dest: 'images/'});
 
 
-userRoute.post("/users",
+userRoute.post("/create-users",
     verifyToken,
     upload.single('photo'),
     [
