@@ -5,6 +5,7 @@ import userRoutes from "./routes/user.routes.js";
 import positionsRoute from "./routes/positions.routes.js";
 import tokenRoutes from "./routes/token.routes.js";
 import {sequelize} from "../models/index.mjs";
+import cors from "cors"
 
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv"
@@ -14,9 +15,18 @@ dotenv.config();
 const PORT = process.env.PORT || 3005
 
 const app = express();
+app.set("trust proxy", 1);
 const server = http.createServer(app);
 
+const corsOptions ={
+    credentials: true,
+    optionSuccessStatus: 200,
+    origin: true,
+}
+
+
 app.use('/images', express.static('images'));
+app.use(cors(corsOptions));
 app.use(express.json())
 app.use(cookieParser());
 
