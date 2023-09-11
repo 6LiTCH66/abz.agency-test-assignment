@@ -28,6 +28,7 @@ const corsOptions = {
 
 app.use('/images', express.static('images'));
 app.use(cors(corsOptions));
+
 app.use(express.json())
 app.use(cookieParser());
 
