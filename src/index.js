@@ -18,7 +18,8 @@ const app = express();
 app.set("trust proxy", 1);
 const server = http.createServer(app);
 
-const corsOptions ={
+const corsOptions = {
+    methods: ['GET', 'POST'],
     credentials: true,
     optionSuccessStatus: 200,
     origin: true,
