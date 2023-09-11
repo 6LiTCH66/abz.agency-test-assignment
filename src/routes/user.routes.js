@@ -12,17 +12,6 @@ const userController = new UserController();
 const upload = multer({
     dest: 'images/'});
 
-userRoute.get("/users",
-    [
-        query("count").isInt().withMessage("The count must be an integer."),
-        query("page").isInt({ gt: 0 }).withMessage("The page must be at least 1.")
-    ], userController.getUsers)
-
-userRoute.get("/users/:id",
-    [
-        param("id").isInt().withMessage("The user_id must be an integer.")
-    ],
-    userController.getOneUser)
 
 userRoute.post("/users",
     verifyToken,
@@ -60,5 +49,19 @@ userRoute.post("/users",
         })
     ],
     userController.createUser)
+
+userRoute.get("/users",
+    [
+        query("count").isInt().withMessage("The count must be an integer."),
+        query("page").isInt({ gt: 0 }).withMessage("The page must be at least 1.")
+    ], userController.getUsers)
+
+userRoute.get("/users/:id",
+    [
+        param("id").isInt().withMessage("The user_id must be an integer.")
+    ],
+    userController.getOneUser)
+
+
 
 export default userRoute;
